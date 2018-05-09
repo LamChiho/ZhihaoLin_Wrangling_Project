@@ -73,7 +73,7 @@ gap_tb$Country <- toupper(gap_tb$Country)
 ```
 
 ```{r load data, message=FALSE, warning=FALSE}
-attacks <- read_csv("~/attacks.csv")%>%
+attacks <- read_csv("attacks.csv")%>%
   filter(`Case Number`!=0)%>%
   select(-c(Date,X23,X24))%>%
   mutate(order=`original order`)%>%
@@ -95,7 +95,7 @@ attacks <- left_join(attacks,Spe,by="order")%>%
 ```
 
 ```{r International tourism information attached, message=FALSE, warning=FALSE}
-tourism <- read_csv("~/API_ST.INT.ARVL_DS2_en_csv_v2.csv",  skip = 4)%>%
+tourism <- read_csv("API_ST.INT.ARVL_DS2_en_csv_v2.csv",  skip = 4)%>%
   select(-c(5:39,62,63))%>%
   na.omit()%>%
   gather(5:26,key="Year",value="International_Tourism")
@@ -124,7 +124,7 @@ attacks <- attacks%>%
 
 ##Since month can describe partially the tempreture, hence here
 ```{r}
-time <- read_csv("~/attacks.csv")%>%
+time <- read_csv("attacks.csv")%>%
   filter(`Case Number`!=0)%>%
   select(Date,`original order`)%>%
   na.omit()%>%
@@ -275,7 +275,7 @@ top_countries <- attacks%>%
   summarise(time=sum(atk),kill=sum(death))%>%
   arrange(desc(time))%>%
   .[1:5,]
-Age_bar<-c(10:50)
+Age_bar <- c(10:50)
 top_countries%>%
   left_join(attacks,by="Country")%>%
   filter(Year>=1900)%>%
@@ -304,7 +304,7 @@ attacks%>%
 ```
 ##It seemed the attacks in the USA is leading, and the standard deviation of attacks in USA is much more than in the Australia. And the mean and median of attacks took place in Austrailia is higher than USA. Maybe the structure of people who go to the shoreline is different in these countries.
 ```{r}
-fatality_year<-attacks%>%
+fatality_year <- attacks%>%
   filter(Year>=1900)%>%
   group_by(Year)%>%
   mutate(n=`Fatal (Y/N)`)%>%
@@ -413,9 +413,9 @@ head(attacks)
 ```
 Write csvs for easier use.Like what was used in the shiny apps
 ```{r}
-write.csv(specie_study,"~/specie_fatality.csv")
-write.csv(attacks,"~/attack_new_information.csv")
-write.csv(top_countries,"~/top_countries.csv")
+write.csv(specie_study,"specie_fatality.csv")
+write.csv(attacks,"attack_new_information.csv")
+write.csv(top_countries,"top_countries.csv")
 ```
 
 
