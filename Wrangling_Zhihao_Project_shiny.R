@@ -15,11 +15,11 @@ library(choroplethr)
 library(plotly)
 library(later)
 
-specie_study <- read.csv("~/specie_fatality.csv")
-top_countries <- read.csv("~/top_countries.csv")
-attacks1 <- read_csv("~/attack_new_information.csv")%>%
+specie_study <- read.csv("specie_fatality.csv")
+top_countries <- read.csv("top_countries.csv")
+attacks1 <- read_csv("attack_new_information.csv")%>%
   filter(Country%in%top_countries$Country)
-attacks <- read_csv("~/attack_new_information.csv")
+attacks <- read_csv("attack_new_information.csv")
 Age_bar<-c(10:50)
 Area_list <- attacks1%>%
   mutate(n=1)%>%
@@ -65,7 +65,7 @@ ui <- fluidPage(
                   label = "Year selection:",
                   min = 1800,
                   max = 2015,
-                  value = c(1500,2015))
+                  value = c(1800,2015))
     ),
     
     
